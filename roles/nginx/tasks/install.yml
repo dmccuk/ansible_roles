@@ -1,0 +1,8 @@
+---
+ - name: Install official nginx repository 
+   apt_repository:
+     repo: 'deb http://nginx.org/packages/ubuntu/ lucid nginx'
+ - name: Install nginx
+   apt: name=nginx
+        state=latest
+        force=yes

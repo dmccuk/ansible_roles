@@ -1,0 +1,11 @@
+---
+# Base tasks - Should run on all nodes
+ - group:
+     name: devops
+     state: present
+ - name: Create devops user with Admin Privileges
+   user:
+     name: devops
+     comment: "Devops User"
+     uid: 2001
+     group: devops
