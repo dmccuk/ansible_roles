@@ -1,0 +1,13 @@
+---
+- name: Install and start apache
+  hosts: all
+#  user: root
+  vars:
+    http_port: 80
+  tasks:
+  - name: 1. Install apache to latest version
+    yum: name=httpd state=latest
+
+  - name: 2. Start Apache
+    service: name=httpd state=running enabled=yes
+

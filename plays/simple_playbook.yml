@@ -1,0 +1,29 @@
+---
+ - hosts: all
+   remote_user: root
+   tasks:
+   - group:
+       name: devops
+       state: present
+   - name: Create devops user with Admin Privileges
+     user:
+       name: devops
+       comment: "Devops User"
+       uid: 2001
+       group: devops
+ 
+ - hosts: www
+   tasks:
+   - name: Install htop package
+     action: apt name=htop state=present update_cache=yes
+   - name: Install official nginx repository 
+     apt_repository:
+       repo: 'deb http://nginx.org/packages/ubuntu/ lucid nginx'
+   - name: Install nginx
+     apt: name=nginx
+          state=latest
+          force=yes
+   - name: Start nginx
+     service:
+       name: nginx
+       state: started
